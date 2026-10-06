@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Phase 1 dependencies: PDF -> Chunk -> Embed -> FAISS -> Ollama -> Answer
+# (Multi-source, hybrid search, evaluation, voice, and frontend
+#  dependencies are added in later phases.)
+# ---------------------------------------------------------------------------
+
+# LangChain core + integrations
+# NOTE: langchain-community now depends on the langchain-classic package
+# (pulled in automatically). It also emits a deprecation warning for
+# PyPDFLoader, recommending a future move to a standalone loader
+# package -- it still works correctly today, so Phase 1 uses it as-is.
+langchain-core==1.6.3
+langchain-text-splitters==1.1.2
+langchain-community==0.4.2
+langchain-huggingface==1.2.2
+langchain-ollama==1.1.0
+
+# PDF parsing
+pypdf==5.9.0
+
+# Web page loading (used by WebBaseLoader)
+beautifulsoup4==4.12.3
+
+# Embeddings
+sentence-transformers==6.0.1
+
+# Vector store
+faiss-cpu==1.15.0
+
+# Keyword search (BM25) for hybrid retrieval
+rank_bm25==0.2.2
+
+# Config
+python-dotenv==1.2.2
+
+# Testing (dev dependency, but small enough to keep in the main file for Phase 1)
+pytest==9.1.1
+
+# API backend (Phase 5)
+fastapi==0.141.1
+uvicorn==0.53.0
+python-multipart==0.0.17
+
+# Voice (Phase 7) -- optional, but required if you want speech input/output
+faster-whisper==1.1.0
+pyttsx3==2.98
+
+# Note: the frontend (Phase 8, frontend/) is plain HTML/CSS/JS.
+# No Python packages needed to run it -- just open frontend/index.html
+# in a browser (or serve the folder) once api.py is running.

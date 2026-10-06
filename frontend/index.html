@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG Voice Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <div class="shell">
+
+    <aside class="sidebar">
+
+      <div class="theme-controls">
+        <button id="theme-toggle" class="icon-btn" title="Toggle light/dark">🌙</button>
+        <div id="swatches" class="swatches">
+          <button class="swatch" data-accent="ember" title="Ember"></button>
+          <button class="swatch" data-accent="moss" title="Moss"></button>
+          <button class="swatch" data-accent="indigo" title="Indigo"></button>
+          <button class="swatch" data-accent="rose" title="Rose"></button>
+          <button class="swatch" data-accent="teal" title="Teal"></button>
+        </div>
+      </div>
+
+      <button id="new-chat-btn" class="btn-primary">+ New chat</button>
+
+      <div class="sidebar-section">
+        <h2>Chats</h2>
+        <ul id="session-list" class="session-list"></ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="sidebar-section">
+        <h2>Sources in use</h2>
+        <ul id="source-list" class="source-list"></ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Add a document</h2>
+        <form id="upload-form">
+          <input type="file" id="file-input" accept=".pdf,.txt,.csv">
+          <button type="submit" class="btn-secondary">Add document</button>
+        </form>
+        <p id="upload-status" class="status-line"></p>
+        <p class="disclaimer">Supports PDF, TXT, and CSV files. Word (.docx) isn't supported yet.</p>
+      </div>
+
+      <div class="sidebar-section">
+        <h2>Add a website</h2>
+        <form id="url-form">
+          <input type="url" id="url-input" placeholder="https://example.com">
+          <button type="submit" class="btn-secondary">Add website</button>
+        </form>
+        <p id="url-status" class="status-line"></p>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <div id="empty-state" class="empty-state">
+        <div id="orb" class="orb"></div>
+        <h1>Ask your documents anything.</h1>
+        <p>Type a question below, or speak it.</p>
+      </div>
+
+      <div id="transcript" class="transcript hidden"></div>
+
+      <div class="composer">
+        <div id="mini-orb" class="mini-orb hidden"></div>
+        <form id="composer-form" class="composer-form">
+          <input type="text" id="question-input" placeholder="Ask a question about your documents..." autocomplete="off">
+          <button type="button" id="mic-btn" class="icon-btn" title="Ask by voice">🎙</button>
+          <button type="button" id="voice-mode-toggle" class="voice-toggle" title="Voice conversation mode" aria-pressed="false">
+            <span class="voice-toggle-knob"></span>
+          </button>
+          <button type="submit" id="send-btn" class="btn-primary">Send</button>
+          <button type="button" id="stop-btn" class="btn-danger hidden">Stop</button>
+        </form>
+      </div>
+
+    </main>
+  </div>
+
+  <audio id="tts-audio" hidden></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
